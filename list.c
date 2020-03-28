@@ -4,7 +4,7 @@
 #include <stdlib.h>
 #include <time.h>
 
-unsigned int ns[] = { 10, /* TODO: fill values which will be used as lists' sizes */ };
+unsigned int ns[] = { 10, 100, 1000, 10000}; /* TODO: fill values which will be used as lists' sizes */ };
 
 // each list node contains an integer key value and pointer to next list node
 struct node {
@@ -14,16 +14,37 @@ struct node {
 
 // list's beginning is called the head of list
 struct node *head = NULL;
+struct node *tail = NULL;
 
 
 struct node* list_insert(int value) {
-    // TODO: implement
+    node* temp = new node;
+    temp -> key = value;
+    temp -> next = NULL;
+
+    if(head == NULL)
+    {
+      head = temp;
+      tail = temp;
+    }
+    else                  // wstawiamy element na początek listy
+    {
+      temp -> next = head; //pierwszy stanie się drugim,
+      head = temp; // nowy stanie się pierwszym,
+    }
     return NULL;
 }
 
 struct node* list_search(int value) {
-    // TODO: implement
-    return NULL;
+
+    node *szukaj = new node;
+    szukaj = head;
+
+    while(szukaj != null && szukaj.key != value)
+    {
+      szukaj = szukaj->next;
+    }
+    return szukaj;
 }
 
 void list_delete(int value) {
@@ -31,7 +52,20 @@ void list_delete(int value) {
 }
 
 unsigned int list_size() {
-    // TODO: implement
+    int size = 0;
+    if(head == NULL)
+    {
+      cout << "Lista jest pusta" << endl;
+    }
+    node *szukaj = new node;
+    szukaj = head;
+
+    while(szukaj != NULL)
+    {
+      size = size + 1;
+      szukaj = szukaj -> next;
+    }
+
     return 0;
 }
 
