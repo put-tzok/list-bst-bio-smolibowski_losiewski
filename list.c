@@ -18,29 +18,21 @@ struct node *tail = NULL;
 
 
 struct node* list_insert(int value) {
-    node* temp = new node;
-    temp -> key = value;
-    temp -> next = NULL;
-
-    if(head == NULL)
-    {
-      head = temp;
-      tail = temp;
-    }
-    else                  // wstawiamy element na początek listy
-    {
-      temp -> next = head; //pierwszy stanie się drugim,
-      head = temp; // nowy stanie się pierwszym,
-    }
-    return NULL;
+    struct node* createNode = malloc(sizeof(*createNode));
+    
+createNode -> key = value;
+   createNode-> next = head;
+   head = createNode;
+    
+       return NULL;
 }
 
 struct node* list_search(int value) {
 
-    node *szukaj = new node;
+    struct node *szukaj;
     szukaj = head;
 
-    while(szukaj != null && szukaj.key != value)
+    while(szukaj != NULL && szukaj.key != value)
     {
       szukaj = szukaj->next;
     }
@@ -48,16 +40,29 @@ struct node* list_search(int value) {
 }
 
 void list_delete(int value) {
-    // TODO: implement
+    struct node *szukaj;
+    if (head.key == value)
+    {
+        head = head.next;
+    }
+    else
+        prev = head;
+        szukaj = head.next;
+        while (szukaj != NULL && szukaj.key != value)
+        {
+            prev = szukaj;
+            szukaj = szukaj.next;
+        }
+        if (szukaj != NULL)
+        {
+            prev.next = szukaj.next;
+        }
 }
 
 unsigned int list_size() {
     int size = 0;
-    if(head == NULL)
-    {
-      cout << "Lista jest pusta" << endl;
-    }
-    node *szukaj = new node;
+
+   struct node *szukaj;
     szukaj = head;
 
     while(szukaj != NULL)
