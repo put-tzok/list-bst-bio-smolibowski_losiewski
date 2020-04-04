@@ -4,7 +4,7 @@
 #include <stdlib.h>
 #include <time.h>
 
-unsigned int ns[] = { 10, 100, 1000, 10000}; /* TODO: fill values which will be used as lists' sizes */ };
+unsigned int ns[] = { 1000, 2000, 3000, 4000, 5000, 6000, 7000, 8000, 9000, 9500}; /* TODO: fill values which will be used as lists' sizes */
 
 // each list node contains an integer key value and pointer to next list node
 struct node {
@@ -14,64 +14,64 @@ struct node {
 
 // list's beginning is called the head of list
 struct node *head = NULL;
-struct node *tail = NULL;
+
 
 
 struct node* list_insert(int value) {
-    struct node* createNode = malloc(sizeof(*createNode));
-    
-createNode -> key = value;
-   createNode-> next = head;
-   head = createNode;
-    
-       return NULL;
+
+    struct node *createNode = malloc(sizeof(*createNode));
+    createNode->key = value;
+    createNode->next = head;
+    head = createNode;
+
+       //return NULL;
 }
+
+struct node *iter;
 
 struct node* list_search(int value) {
+    iter= head;
 
-    struct node *szukaj;
-    szukaj = head;
-
-    while(szukaj != NULL && szukaj.key != value)
+    while(iter != NULL && iter->key != value)
     {
-      szukaj = szukaj->next;
+      iter = iter->next;
     }
-    return szukaj;
+    return iter;
 }
 
+
 void list_delete(int value) {
-    struct node *szukaj;
-    if (head.key == value)
+    if (head->key == value)
     {
-        head = head.next;
+        head = head->next;
     }
     else
-        prev = head;
-        szukaj = head.next;
-        while (szukaj != NULL && szukaj.key != value)
+    {
+        struct node *prev = head;
+        iter = head->next;
+        while (iter != NULL && iter->key != value)
         {
-            prev = szukaj;
-            szukaj = szukaj.next;
+            prev = iter;
+            iter = iter->next;
         }
-        if (szukaj != NULL)
+        if (iter != NULL)
         {
-            prev.next = szukaj.next;
+            prev->next = iter->next;
         }
+    }
 }
 
 unsigned int list_size() {
     int size = 0;
+    iter = head;
 
-   struct node *szukaj;
-    szukaj = head;
-
-    while(szukaj != NULL)
+    while(iter != NULL)
     {
       size = size + 1;
-      szukaj = szukaj -> next;
+      iter = iter->next;
     }
 
-    return 0;
+    return size;
 }
 
 /*
