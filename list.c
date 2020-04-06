@@ -4,7 +4,7 @@
 #include <stdlib.h>
 #include <time.h>
 
-unsigned int ns[] = { 10, /* TODO: fill values which will be used as lists' sizes */ };
+unsigned int ns[] = { 5000, 10000, 20000, 30000, 40000, 50000, 60000}; /* TODO: fill values which will be used as lists' sizes */
 
 // each list node contains an integer key value and pointer to next list node
 struct node {
@@ -16,23 +16,62 @@ struct node {
 struct node *head = NULL;
 
 
+
 struct node* list_insert(int value) {
-    // TODO: implement
-    return NULL;
+
+    struct node *createNode = malloc(sizeof(*createNode));
+    createNode->key = value;
+    createNode->next = head;
+    head = createNode;
+
+       //return NULL;
 }
+
+struct node *iter;
 
 struct node* list_search(int value) {
-    // TODO: implement
-    return NULL;
+    iter= head;
+
+    while(iter != NULL && iter->key != value)
+    {
+      iter = iter->next;
+    }
+    return iter;
 }
 
+
 void list_delete(int value) {
-    // TODO: implement
+    if (head->key == value)
+    {
+        head = head->next;
+    }
+    else
+    {
+        struct node *prev = head;
+        iter = head->next;
+        while (iter != NULL && iter->key != value)
+        {
+            prev = iter;
+            iter = iter->next;
+        }
+        if (iter != NULL)
+        {
+            prev->next = iter->next;
+        }
+    }
 }
 
 unsigned int list_size() {
-    // TODO: implement
-    return 0;
+    int size = 0;
+    iter = head;
+
+    while(iter != NULL)
+    {
+      size = size + 1;
+      iter = iter->next;
+    }
+
+    return size;
 }
 
 /*
